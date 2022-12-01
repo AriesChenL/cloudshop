@@ -36,7 +36,6 @@ var router = new VueRouter({ // 创建路由实例对象router
         {path: '/user/address', component: Address, name: 'address', meta: {title: '收货地址'}},
         {path: '/user/address/edit', component: AddressEdit, props: true, name: 'address_edit', meta: {title: '编辑收货地址'}},
         {path: '/order/create', component: OrderCreate, props: true, name: 'order_create', meta: {title: '下订单'}},
-        // {path: '/user/address/select', component: Address, name: 'address_select', meta: {title: '选择收货地址'}},
         {path: '/order/list', component: OrderList, name: 'order_list', meta: {title: '我的订单'}},
         {path: '/order/show/:id', component: OrderShow, props: true, name: 'order_show', meta: {title: '查看订单'}},
         // {path: '/news/list', component: NewsList, name: 'news_list', meta: {title: '新闻资讯列表'}},

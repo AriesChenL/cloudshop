@@ -26,6 +26,7 @@
 
 <script>
 import img from '@/assets/images/macbookpro.png'
+import { Dialog } from 'vant';
 
 export default {
   name: "GoodsInfo",
@@ -49,13 +50,28 @@ export default {
   },
   methods: {
     addShopcart() {
-      this.$store.commit('shopcart/addCarCountNum')
-      this.$store.commit('shopcart/addCarCountNumByNum', this.value-1)
+      if (this.$store.getters["user/isLogin"]){
+        this.$store.commit('shopcart/addCarCountNum')
+        this.$store.commit('shopcart/addCarCountNumByNum', this.value-1)
+      }else {
+        Dialog.alert({
+          message: '请先登录',
+        }).then(() => {
+          this.$router.push({name: 'login'})
+        })
+      }
     },
 
     buy() {
-      // this.$store.commit('shopcart/setBuy', {id: this.$props.id, count: this.value})
-      this.$router.push({name: 'order_create', params:{value: this.value}})
+      if (this.$store.getters["user/isLogin"]){
+        this.$router.push({name: 'order_create', params:{value: this.value}})
+      }else {
+        Dialog.alert({
+          message: '请先登录',
+        }).then(() => {
+          this.$router.push({name: 'login'})
+        })
+      }
     }
 
   }
