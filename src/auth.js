@@ -1,9 +1,9 @@
 var auth = {
     getAuthorization() {
-        return localStorage.getItem('Authorization');
+        return localStorage.getItem('usernme');
     },
-    setAuthorization(Authorization) {
-        localStorage.setItem('Authorization', Authorization);
+    setAuthorization(username) {
+        localStorage.setItem('usernme', username);
     }
 }
 export default {

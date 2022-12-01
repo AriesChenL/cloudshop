@@ -3,7 +3,7 @@
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o" :to="{name:'home'}">首页</van-tabbar-item>
       <van-tabbar-item icon="bag-o" :to="{name: 'category'}">分类</van-tabbar-item>
-      <van-tabbar-item icon="shopping-cart-o" badge="5" :to="{name: 'shopcart'}">购物车</van-tabbar-item>
+      <van-tabbar-item icon="shopping-cart-o" :badge="$store.getters['shopcart/getCarCountNum']" :to="{name: 'shopcart'}">购物车</van-tabbar-item>
       <van-tabbar-item icon="contact" :to="{name: 'user'}">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -35,6 +35,8 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
-
+<style scoped lang='less'>
+div{
+  background-color: #f6f4ef;
+}
 </style>

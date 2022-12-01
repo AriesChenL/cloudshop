@@ -19,7 +19,7 @@
             :rules="[{ required: true, message: '请填写密码' }]"
         />
         <div style="margin: 16px;">
-          <van-button round block type="info" native-type="submit">提交</van-button>
+          <van-button round block type="info" native-type="submit" color="linear-gradient(100deg, #f6f4ef, #28a2ff, #f6f4ef)">登录</van-button>
         </div>
       </van-form>
 
@@ -51,11 +51,10 @@ export default {
       } else {
         // 登录成功
         this.$store.commit('user/setUser', {
-          "session_id": "akemvcqn21dscu5bupg5sn5p7t", //注意，登录时将会额外得到一个session_id的数据
           "id": 1,
           "username": this.loginForm.username
         })
-        this.$auth.setAuthorization('akemvcqn21dscu5bupg5sn5p7t')
+        this.$auth.setAuthorization(this.loginForm.username)
         this.$router.replace({name: 'user'})
         Dialog({message: '登录成功'});
       }

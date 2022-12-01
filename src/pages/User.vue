@@ -18,16 +18,18 @@
     <ul class="mui-table-view mui-table-view-chevron">
       <li class="mui-table-view-cell mui-media">
         <div class="mui-navigate-right">
-          <van-cell icon="passed" title="我的订单" is-link :to="{ name: 'order_list' }" />
+          <van-cell icon="passed" title="我的订单" is-link :to="{ name: 'order_list' }"/>
         </div>
       </li>
       <li class="mui-table-view-cell mui-media">
         <div class="mui-navigate-right">
-          <van-cell icon="location-o" title="收货地址" is-link :to="{ name: 'address' }" />
+          <van-cell icon="location-o" title="收货地址" is-link :to="{ name: 'address' }"/>
         </div>
       </li>
       <li class="pan-logout">
-        <van-button round type="info" @click="logout" size="large" color="linear-gradient(90deg, #ffd787, #28a2ff)">退出登录</van-button>
+        <van-button round type="info" @click="logout" size="large"
+                    color="linear-gradient(100deg, #f6f4ef, #28a2ff, #f6f4ef)">退出登录
+        </van-button>
       </li>
     </ul>
   </div>
@@ -54,22 +56,37 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex'
+import {mapGetters} from 'vuex'
 import {Dialog} from 'vant';
 
 export default {
   name: "User",
-  computed: {
-    ...mapState({
-      username: state => state.user.username
-    }),
-    ...mapGetters('user', {isLogin: 'isLogin'})
+  date() {
+    return {
+      username: ''
+    }
   },
-  methods:{
-    logout () {
+  created() {
+    this.username = this.getUsername()
+  },
+  mounted() {
+    this.$store.commit('user/setUser')
+  },
+  computed: {
+    ...mapGetters('user', {isLogin: 'isLogin'}),
+    isLogin(){
+      this.$store.commit('user/setUser', this.username)
+      return this.getUsername() !== ''
+    },
+  },
+  methods: {
+    logout() {
       this.$store.commit('user/logout')
       this.$auth.setAuthorization('')
-      Dialog({message: '退出成功'});
+      Dialog({message: '退出成功，请刷新'});
+    },
+    getUsername() {
+      return this.$auth.getAuthorization()
     }
   }
 }
@@ -77,14 +94,20 @@ export default {
 
 <style scoped lang='less'>
 
-.pan-logout{
+.user-info {
+  border-radius: 20px;
+}
+
+
+.pan-logout {
   padding-top: 20px;
 }
 
-.mui-table-view .mui-media, .mui-table-view .mui-media-body{
+.mui-table-view .mui-media, .mui-table-view .mui-media-body {
   line-height: 42px;
 }
-.mui-table-view-cell:after{
+
+.mui-table-view-cell:after {
   left: 0px;
 }
 
@@ -100,7 +123,7 @@ export default {
       overflow: hidden;
       width: 100%;
       height: 120px;
-      background: linear-gradient(90deg, #28a2ff, #ffd787);
+      background: linear-gradient(90deg, #28a2ff, #f6f4ef);
       box-shadow: 0 0.1rem 0.25rem #f8e3c6;
 
       .avatar-con {

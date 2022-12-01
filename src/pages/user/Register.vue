@@ -33,7 +33,7 @@
           :rules="[{ required: true, message: '请填写邮箱' }]"
       />
       <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit">提交</van-button>
+        <van-button round block type="info" native-type="submit" color="linear-gradient(100deg, #f6f4ef, #28a2ff, #f6f4ef)">提交</van-button>
       </div>
     </van-form>
   </div>

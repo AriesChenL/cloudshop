@@ -1,10 +1,10 @@
 <template>
   <div>
-    <van-nav-bar
+    <van-nav-bar class="nav_bar"
         :title="$route.meta.title"
         @click-left="goBack"
     >
-      <span slot="left" v-show="showBack">< 返回</span>
+      <span slot="left" v-show="showBack"><van-icon name="arrow-left" />返回</span>
     </van-nav-bar>
 
     <transition name="van-slide-left">
@@ -58,7 +58,14 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+span{
+  color: #39a9ed;
+  font-size: 15px;
+}
 
+.nav_bar{
+  background-color: #f6f4ef;
+}
 
 </style>
