@@ -1,17 +1,31 @@
 <template>
   <div>
-    <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item>1</van-swipe-item>
-      <van-swipe-item>2</van-swipe-item>
-      <van-swipe-item>3</van-swipe-item>
-      <van-swipe-item>4</van-swipe-item>
+    <van-swipe :autoplay="3000" class="swiper">
+      <van-swipe-item v-for="(image, index) in images" :key="index">
+        <img v-lazy="image" />
+      </van-swipe-item>
     </van-swipe>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import { Lazyload } from 'vant';
+
+Vue.use(Lazyload);
+
 export default {
-  name: "swiper"
+  name: "swiper",
+  data() {
+    return {
+      images: [
+        'https://img01.yzcdn.cn/vant/apple-1.jpg',
+        'https://img01.yzcdn.cn/vant/apple-2.jpg',
+        'https://img01.yzcdn.cn/vant/apple-3.jpg',
+        'https://img01.yzcdn.cn/vant/apple-4.jpg',
+      ],
+    };
+  },
 }
 </script>
 
@@ -22,5 +36,14 @@ export default {
   line-height: 200px;
   text-align: center;
   background-color: #39a9ed;
+}
+
+.swiper{
+  height: 200px;
+
+  img{
+    height: 100%;
+    margin-left: 20%;
+  }
 }
 </style>
