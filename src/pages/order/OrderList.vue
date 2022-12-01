@@ -1,11 +1,11 @@
 <template>
-  <div class="box">
-    <div class="item" v-for="(item, index) in orderList" :key="index">
+  <div v-if="this.$store.getters['order/getMaxId']>=0" class="box">
+    <div class="item" @click="showDetail(index)" v-for="(item, index) in orderList" :key="index">
       <div class="top">
         <span>{{ item.createTime }}</span>
         <span class="right">
           <span>{{ item.isPay }}</span> |
-          <span>{{ item.isDel }}</span>
+          <span @click.stop="delOrderById(index)">{{ item.isDel }}</span>
         </span>
       </div>
       <div class="bottom">
@@ -17,6 +17,9 @@
       </div>
 
     </div>
+  </div>
+  <div class="else" v-else>
+    没有订单哦~
   </div>
 </template>
 
@@ -35,12 +38,23 @@ export default {
   methods: {
     getAllOrderList() {
       return this.$store.getters["order/getAddList"]
+    },
+    showDetail(id) {
+      this.$router.push({name: 'order_show', params: {id: id}});
+    },
+    delOrderById(id){
+      this.$store.commit('order/removeOrder', id)
     }
   }
 }
 </script>
 
 <style scoped lang='less'>
+.else {
+  margin-top: 100px;
+  margin-left: 150px;
+}
+
 .box {
   background-color: #c5ddf6;
   padding: 10px;

@@ -55,17 +55,13 @@ export default {
     }
   },
   methods: {
-    register: function () {
-      if (this.regForm.password != this.regForm.repassword) {
+    register() {
+      if (this.regForm.password !== this.regForm.repassword) {
         Dialog({message: '密码两次输入不一致'});
-        return
       }else {
         this.$store.commit('user/setUser', {
-          "session_id": "lcccc49jgi6sslk8c0a6vfaf1u",
-          "id": "2",
           "username": this.regForm.username
         })
-        this.$auth.setAuthorization('lcccc49jgi6sslk8c0a6vfaf1u')
         Dialog({message: '注册成功'});
         this.$router.replace({name: 'user'})
       }

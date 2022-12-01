@@ -56,38 +56,28 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
 import {Dialog} from 'vant';
 
 export default {
   name: "User",
-  date() {
-    return {
+  data(){
+    return{
       username: ''
     }
   },
   created() {
-    this.username = this.getUsername()
-  },
-  mounted() {
-    this.$store.commit('user/setUser')
+    this.username = this.$store.getters["user/getUsername"]
   },
   computed: {
-    ...mapGetters('user', {isLogin: 'isLogin'}),
     isLogin(){
-      this.$store.commit('user/setUser', this.username)
-      return this.getUsername() !== ''
+      return this.$store.getters["user/isLogin"]
     },
   },
   methods: {
     logout() {
       this.$store.commit('user/logout')
-      this.$auth.setAuthorization('')
-      Dialog({message: '退出成功，请刷新'});
+      Dialog({message: '退出成功'});
     },
-    getUsername() {
-      return this.$auth.getAuthorization()
-    }
   }
 }
 </script>

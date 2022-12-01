@@ -1,13 +1,15 @@
 const state = {
     orderList:[
-        {
-            id: 0,
-            createTime: '',
-            isPay: 'false',
-            isDel: 'false',
-            num: 0,
-            payPrice: 0
-        },
+        // {
+        //     id: Number,
+        //     createTime: String,
+        //     isPay: String,
+        //     isDel: String,
+        //     num: Number,
+        //     payPrice: Number
+        //     otherInfo: String,
+        //     address: {}
+        // },
     ]
 }
 const getters = {
@@ -27,6 +29,9 @@ const mutations = {
         state.orderList[order.id].id = order.id
         state.orderList[order.id].isDel = order.isDel
     },
+    removeOrder(state, id){
+        state.orderList.splice(id, 1)
+    }
 }
 export default {
     namespaced: true,

@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="little-box" v-for="iten in 13">
+    <div class="little-box" v-for="item in 21">
       <router-link :to="{name: 'goods_info', params: {id: 1}}">
         <img :src="Img">
         <h4>13代i7笔记本</h4>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Img from '@/assets/images/computer.png'
+import Img from '@/assets/images/macbookpro.png'
 
 export default {
   name: "GoodsList",
@@ -40,7 +40,7 @@ export default {
     background-color: #c5ddf6;
     border-radius: 10px;
     width: 40%;
-    height: 220px;
+    height: 170px;
     text-align: center;
 
     position: relative;

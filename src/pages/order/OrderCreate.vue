@@ -21,7 +21,7 @@
           <h5>顺丰速递</h5><br>
           <span>工作日、栓休日遇节假日均可送货</span>
         </div>
-        <div class="detail"><h4>给商家留言</h4><input type="text" placeholder="备注信息"></div>
+        <div class="detail"><h4>给商家留言</h4><input v-model="otherInfo" type="text" placeholder="备注信息"/></div>
       </div>
     </div>
     <van-submit-bar :price="this.num*1499900.9" button-text="提交订单" @submit="submitOrder" button-color="#26a2ff"/>
@@ -33,7 +33,8 @@ export default {
   name: "OrderCreate",
   data() {
     return {
-      num: 0
+      num: 0,
+      otherInfo: ''
     }
   },
   computed: {
@@ -74,8 +75,10 @@ export default {
         createTime: this.getDateTime(Date.now()),
         isPay: '未支付',
         isDel: '删除订单',
-        num: this.getPayNum(),
-        payPrice: 0
+        num: this.num,
+        payPrice: 0,
+        otherInfo: this.otherInfo,
+        address: this.address
       })
       this.$store.commit('shopcart/reduceCarCountNumByNum', this.getPayNum())
       this.$router.push('/order/list')

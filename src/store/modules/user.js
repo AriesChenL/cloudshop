@@ -3,7 +3,10 @@ const state = {
 }
 const getters = {
     isLogin(state) {
-        return state.id !== 0
+        return state.username !== ''
+    },
+    getUsername(state){
+        return state.username
     }
 }
 const actions = {}

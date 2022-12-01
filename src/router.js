@@ -12,7 +12,7 @@ import Address from './pages/user/Address.vue'
 import AddressEdit from './pages/user/AddressEdit.vue'
 import OrderCreate from './pages/order/OrderCreate.vue'
 import OrderList from './pages/order/OrderList.vue'
-// import OrderShow from './pages/order/OrderShow.vue'
+import OrderShow from './pages/order/OrderShow.vue'
 // import NewsList from './pages/news/NewsList.vue'
 // import NewsInfo from './pages/news/NewsInfo.vue'
 // import PhotoList from './pages/photo/PhotoList.vue'
@@ -38,7 +38,7 @@ var router = new VueRouter({ // 创建路由实例对象router
         {path: '/order/create', component: OrderCreate, props: true, name: 'order_create', meta: {title: '下订单'}},
         // {path: '/user/address/select', component: Address, name: 'address_select', meta: {title: '选择收货地址'}},
         {path: '/order/list', component: OrderList, name: 'order_list', meta: {title: '我的订单'}},
-        // {path: '/order/show/:id', component: OrderShow, props: true, name: 'order_show', meta: {title: '查看订单'}},
+        {path: '/order/show/:id', component: OrderShow, props: true, name: 'order_show', meta: {title: '查看订单'}},
         // {path: '/news/list', component: NewsList, name: 'news_list', meta: {title: '新闻资讯列表'}},
         // {path: '/news/show/:id', component: NewsInfo, props: true, name: 'news_show', meta: {title: '查看新闻资讯'}},
         // {path: '/photo/list', component: PhotoList, name: 'photo_list', meta: {title: '图片分享列表'}},
