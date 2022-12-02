@@ -52,6 +52,7 @@ export default {
 
     i{
       font-style: normal;
+      font-size: 14px;
       position: absolute;
       left: 10%;
       bottom: 10%;
