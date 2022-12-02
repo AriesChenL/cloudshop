@@ -23,6 +23,11 @@ export default {
       list: [],
     }
   },
+  beforeRouteLeave (to, from, next) {
+    console.log('add num:'+this.$route.params.value)
+    to.params.num = this.$route.params.value
+    next()
+  },
   watch:{
     chosenAddressId(newId){
       this.$store.commit('address/setDefaultAddressId', newId)

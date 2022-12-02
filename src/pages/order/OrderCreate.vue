@@ -42,8 +42,10 @@ export default {
     if (this.$store.getters["address/getMaxId"]<0){
       alert('请添加收货地址，再来下单')
       this.$router.push({name: 'address'})
-    }else {
+    }else if(typeof(this.$route.params.num) == 'undefined'){
       this.num = this.$route.params.value
+    }else {
+      this.num = this.$route.params.num
     }
   },
 
@@ -85,7 +87,7 @@ export default {
       this.$router.push('/order/list')
     },
     choiseAddress(){
-      this.$router.push({name: 'address'})
+      this.$router.push({name: 'address', params:{value: this.num}})
     }
   }
 }
