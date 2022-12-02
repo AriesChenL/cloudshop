@@ -1,4 +1,9 @@
 # cloudshop
+## Gitee 地址
+```
+https://gitee.com/chenL_space/cloudshop
+```
+
 
 ## Project setup
 ```

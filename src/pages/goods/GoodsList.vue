@@ -4,7 +4,7 @@
       <router-link :to="{name: 'goods_info', params: {id: 1}}">
         <img :src="Img">
         <h4>13代i7笔记本</h4>
-        <i>￥ 99.9</i>
+        <i>￥ 14999.9</i>
         <span>剩余10件</span>
       </router-link>
     </div>
