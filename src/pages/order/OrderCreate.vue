@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="container">
-      <div class="address">
+      <div class="address" @click="choiseAddress">
         <h4>{{ address.name }}</h4>
         <h5>{{ address.tel }}</h5>
         <span>{{ address.address }}</span>
@@ -34,16 +34,17 @@ export default {
   data() {
     return {
       num: 0,
-      otherInfo: ''
-    }
-  },
-  computed: {
-    address() {
-      return this.getAddress(1)
+      otherInfo: '',
+      address: this.$store.getters["address/getDefaultAddress"]
     }
   },
   created() {
-    this.num = this.$route.params.value
+    if (this.$store.getters["address/getMaxId"]<0){
+      alert('请添加收货地址，再来下单')
+      this.$router.push({name: 'address'})
+    }else {
+      this.num = this.$route.params.value
+    }
   },
 
   methods: {
@@ -82,6 +83,9 @@ export default {
       })
       this.$store.commit('shopcart/reduceCarCountNumByNum', this.getPayNum())
       this.$router.push('/order/list')
+    },
+    choiseAddress(){
+      this.$router.push({name: 'address'})
     }
   }
 }

@@ -3,8 +3,7 @@
       ref="addinfo"
       :area-list="areaList"
       show-postal
-      show-delete
-      show-set-default
+      :show-delete="isShowDel"
       show-search-result
       :search-result="searchResult"
       :area-columns-placeholder="['请选择', '请选择', '请选择']"
@@ -24,7 +23,8 @@ export default {
     return {
       areaList,
       searchResult: [],
-      defaultValue: {}
+      defaultValue: {},
+      isShowDel: !(this.$route.params.isadd)
     };
   },
   methods: {
@@ -36,21 +36,29 @@ export default {
           name: newAddInfo.name,
           tel: newAddInfo.tel,
           address: newAddInfo.province + newAddInfo.county + newAddInfo.addressDetail,
-          id: this.$store.getters["address/getMaxId"] + 1
+          id: this.$store.getters["address/getMaxId"] + 1,
         })
+        if (newAddInfo.isDefault){
+          this.$store.commit('address/setDefaultAddressId', this.$store.getters["address/getMaxId"])
+        }
       } else {
-        //修改
+        // 修改
         this.$store.commit('address/updateAddress', {
           name: newAddInfo.name,
           tel: newAddInfo.tel,
           address: newAddInfo.province + newAddInfo.county + newAddInfo.addressDetail,
           id: newAddInfo.id
         })
+        // if (newAddInfo.isDefault){
+        //   this.$store.commit('address/setDefaultAddressId', newAddInfo.id)
+        // }
       }
       console.log(newAddInfo)
       this.$router.go(-1)
     },
     onDelete() {
+      this.$store.commit('address/removeAddress', this.$refs.addinfo.data.id)
+      this.$router.replace({name: 'address'})
     },
     onChangeDetail(val) {
       if (val) {
@@ -66,7 +74,8 @@ export default {
     },
   },
   mounted() {
-    this.defaultValue = this.$store.getters["address/getAddList"][this.$route.params.id - 1]
+    this.defaultValue = this.$store.getters["address/getAddList"][this.$route.params.id]
+    console.log(this.defaultValue)
   }
 }
 </script>

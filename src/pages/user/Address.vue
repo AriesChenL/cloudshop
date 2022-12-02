@@ -19,9 +19,14 @@ export default {
   name: "Address",
   data() {
     return {
-      chosenAddressId: '1',
+      chosenAddressId: this.$store.getters["address/getDefaultAddressId"],
       list: [],
     }
+  },
+  watch:{
+    chosenAddressId(newId){
+      this.$store.commit('address/setDefaultAddressId', newId)
+    },
   },
   mounted() {
     this.list = this.getAddList()
